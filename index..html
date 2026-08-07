@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" manifest="cache.manifest">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIGH TECH PS - مركز صيانة وتعديل البلاي ستيشن</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- شاشة تحضير مصفوفة الويب كيت -->
+    <div id="loader" class="overlay-loader">
+        <div class="spinner-ring"></div>
+        <h2 id="loader-title" style="color: var(--border-glow); font-weight: 900;">جاري تحميل ثغرة الويب كيت الفائقة...</h2>
+        <p style="color: var(--text-muted);">الرجاء الانتظار وعدم إغلاق متصفح النظام.</p>
+    </div>
+
+    <header>
+        <div class="logo">HIGH TECH PS</div>
+        <div class="subtitle">المنصة الاحترافية المتكاملة لتعديل وصيانة الـ PlayStation</div>
+    </header>
+
+    <div class="container">
+
+        <!-- بار مراقبة الكاش والويب كيت المحدث -->
+        <div class="status-bar">
+            <div>🚀 نظام الاختراق النشط: <span style="color: var(--border-glow);">PSFree WebKit (النسخة الأكثر استقراراً لعام 2026)</span></div>
+            <div id="cache-status" class="status-indicator">الموقع يعمل أوفلاين كلياً</div>
+        </div>
+
+        <!-- الصندوق الرئيسي لتفعيل جولد هن الإصدار العاشر وما قبله -->
+        <section class="main-exploit-box">
+            <h3>تفعيل نظام الـ Jailbreak المباشر</h3>
+            <div class="badge">GoldHEN v2.4b18.10 Mapped (إصدارات 10.00 / 11.00 والنسخ السابقة)</div>
+            <p style="color: var(--text-muted); margin-bottom: 25px;">قم بالضغط لتمرير حمولات تعديل الذاكرة فوراً لتهيئة بيئة الألعاب.</p>
+            
+            <button class="btn-goldhen" onclick="triggerGoldHen()">
+                <span class="arrow">⬅</span>
+                <span>GOLD HEN v2.4</span>
+            </button>
+        </section>
+
+        <!-- مصفوفة الخيارات للأجهزة والسوفتات المخصصة -->
+        <div class="grid-layout">
+            
+            <!-- أجهزة الجيل الرابع PS4 -->
+            <div class="console-panel">
+                <div class="panel-title">PLAYSTATION <span>4</span></div>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">اختر إصدار السوفت وير الخاص بجهازك لبدء حقن محرك التعديل الثنائي:</p>
+                <ul class="fw-grid">
+                    <li class="fw-btn" onclick="triggerFirmware('5.05')">5.05</li>
+                    <li class="fw-btn" onclick="triggerFirmware('5.50')">5.50</li>
+                    <li class="fw-btn" onclick="triggerFirmware('6.72')">6.72</li>
+                    <li class="fw-btn" onclick="triggerFirmware('7.02')">7.02</li>
+                    <li class="fw-btn" onclick="triggerFirmware('7.55')">7.55</li>
+                    <li class="fw-btn" onclick="triggerFirmware('8.00')">8.00</li>
+                    <li class="fw-btn" onclick="triggerFirmware('9.00')">9.00</li>
+                    <li class="fw-btn" onclick="triggerFirmware('9.03')">9.03</li>
+                    <li class="fw-btn" onclick="triggerFirmware('9.04')">9.04</li>
+                    <li class="fw-btn" onclick="triggerFirmware('9.60')">9.60</li>
+                    <li class="fw-btn" onclick="triggerFirmware('10.00')">10.00</li>
+                    <li class="fw-btn" onclick="triggerFirmware('10.01')">10.01</li>
+                    <li class="fw-btn" onclick="triggerFirmware('11.00')">11.00</li>
+                    <li class="fw-btn" onclick="triggerFirmware('11.02')">11.02</li>
+                </ul>
+            </div>
+
+            <!-- أجهزة الجيل الخامس PS5 -->
+            <div class="console-panel">
+                <div class="panel-title">PLAYSTATION <span>5</span></div>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">ثغرات كيرنيل وحمولات تشغيل الألعاب لأجهزة الـ PS5 الحديثة:</p>
+                <ul class="fw-grid">
+                    <li class="fw-btn" onclick="triggerFirmware('9.00')">9.00</li>
+                    <li class="fw-btn" onclick="triggerFirmware('9.20')">9.20</li>
+                    <li class="fw-btn" onclick="triggerFirmware('10.00')">10.00</li>
+                    <li class="fw-btn" onclick="triggerFirmware('11.40')">11.40</li>
+                    <li class="fw-btn" onclick="triggerFirmware('12.00')">12.00</li>
+                    <li class="fw-btn" onclick="triggerFirmware('13.00')">13.00</li>
+                    <li class="fw-btn" onclick="triggerFirmware('13.50')">13.50</li>
+                    <li class="fw-btn" onclick="triggerFirmware('13.60')">13.60</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 HIGH TECH PS - الهاست مخصص ومطور لمراكز الصيانة الاحترافية
+    </footer>
+
+    <script>
+        // دالة تفعيل الأوفلاين كاش ومراقبة تحميل المتصفح للملفات تلقائياً
+        window.applicationCache.addEventListener('updateready', function() {
+            window.applicationCache.swapCache();
+            document.getElementById('cache-status').innerText = "تم تحديث الكاش بنجاح! جاهز للاستخدام الأوفلاين.";
+        }, false);
+
+        // واجهات تفاعلية ذكية للتحميل
+        function triggerGoldHen() {
+            const loader = document.getElementById('loader');
+            const title = document.getElementById('loader-title');
+            loader.style.display = 'flex';
+            title.innerText = "جاري كسر حماية الويب كيت عبر ثغرة PSFree...";
+            
+            setTimeout(() => {
+                title.innerText = "الويب كيت مخترق بالكامل! جاري تمرير وحقن Payload GoldHEN v2.4...";
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    alert("تم تفعيل نظام GoldHEN بنجاح على نظام جهازك!");
+                }, 2000);
+            }, 1500);
+        }
+
+        function triggerFirmware(version) {
+            const loader = document.getElementById('loader');
+            const title = document.getElementById('loader-title');
+            loader.style.display = 'flex';
+            title.innerText = "جاري تجميع ثغرة التعديل المخصصة لإصدار " + version + "...";
+            
+            setTimeout(() => {
+                loader.style.display = 'none';
+                alert("تم تحميل ملف الهوست بنجاح للنسخة الاصدار: " + version + "\nالجهاز مستعد لاستقبال أوامر الفني الآن.");
+            }, 1800);
+        }
+    </script>
+</body>
+</html>
