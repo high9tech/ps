@@ -1,4 +1,4 @@
-![Uploading High Resolution Logo.png…]()
+[Uploading High Resolution Logo.png…]
 إليك الكود المحدث بالكامل بعد إزالة خيارات **GOLD HEN** و **PSFree**، وإضافة **زر واحد في المنتصف** يحمل الاسم **HIGH TECH PS** وتحته كلمة **jailbreak**:
 
 ```html
