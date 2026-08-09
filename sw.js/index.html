@@ -1,22 +1,38 @@
-const CACHE_NAME = 'hightechps-v1';
-const ASSETS = [
-    './',
-    './index.html',
-    './style.css'
-];
+async function loadOfflineCache() {
+    const totalFiles = 100; // نسبة العد التنازلي أو التقدم المطلوبة
+    let progressElement = document.getElementById('progress'); // عنصر عرض النسبة في الصفحة لديك
 
-self.addEventListener('install', (e) => {
-    e.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            return cache.addAll(ASSETS);
-        })
-    );
-});
+    if ('caches' in window) {
+        try {
+            const cacheName = 'high-tech-ps-cache-v1';
+            const cache = await caches.open(cacheName);
+            
+ محاكاة أو تنفيذ عملية تخزين الملفات الأساسية والعد من 1 إلى 100
+            for (let i = 1; i <= 100; i++) {
+                 يمكنك ربط هذه الخطوة بتحميل الملفات الفعلي أو ترك العداد يعرض النسبة المئوية للتثبيت
+                await new Promise(resolve => setTimeout(resolve, 20)); // سرعة العد
+                
+                if (progressElement) {
+                    progressElement.innerText = i + "%";
+                }
+            }
 
-self.addEventListener('fetch', (e) => {
-    e.respondWith(
-        caches.match(e.request).then((response) => {
-            return response || fetch(e.request);
-        })
-    );
-});
+            // تخزين الملفات الأساسية فعلياً في الكاش
+            await cache.addAll([
+                './',
+                './index.html',
+                './payload/goldhen.bin',
+                './payload/ps4/kexploit.js',
+                './payload/ps4/webkit.js',
+                './payload/ps5jb/Testkit-etaHEN.bin'
+            ]);
+
+            alert('تم تفعيل الكاش بنجاح وأصبح بإمكانك استخدام الموقع بدون إنترنت (Offline)!');
+        } catch (error) {
+            console.error('فشل حفظ الكاش:', error);
+            alert('حدث خطأ أثناء تثبيت الكاش، حاول مرة أخرى.');
+        }
+    } else {
+        alert('متصفحك لا يدعم خاصية التخزين المؤقت Offline Cache.');
+    }
+}
