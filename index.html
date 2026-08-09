@@ -3,93 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HIGH TECH PS - loadOfflineCache</title>
+    <title>HIGH TECH PS</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- ربط ملف الـ Manifest إذا وجد -->
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header class="header">
-        <div class="logo-container">
-            <i class="fa-brands fa-playstation ps-icon"></i>
-            <h1>HIGH TECH <span>PS</span></h1>
+    <!-- شاشة التحميل الأولية من 1 إلى 100% -->
+    <div id="loader-wrapper">
+        <div class="loader-content">
+            <h2>HIGH TECH PS</h2>
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <span id="progress-text">1%</span>
         </div>
-        <p class="subtitle">المركز الأول لصيانة وتعديل أجهزة PlayStation</p>
-    </header>
+    </div>
 
-    <!-- Main Container -->
-    <main class="container">
-
-        <!-- Trigger / GoldHEN Seal Button Section -->
-        <section class="action-section">
-            <button class="seal-button" onclick="triggerExploit()">
-                <div class="seal-inner">
-                    <div class="seal-text-top">GOLD HEN</div>
-                    <i class="fa-solid fa-crown crown-icon"></i>
-                    <div class="seal-text-bottom">HIGH TECH PS</div>
-                </div>
-            </button>
-            <p class="status-msg" id="statusMsg">اضغط على الختم لتشغيل السوفت أو الثغرة المحددة</p>
-        </section>
-
-        <!-- Firmware Support Section -->
-        <section class="grid-section">
-            <!-- PS4 Card -->
-            <div class="card ps4-card">
-                <div class="card-header">
-                    <i class="fa-brands fa-playstation"></i>
-                    <h2>دعم إصدارات PS4</h2>
-                </div>
-                <div class="card-body">
-                    <span class="badge">من 5.00 إلى 11.02</span>
-                    <p>دعم كامل واستقرار عالي لجميع ثغرات السوفتات المتاحة.</p>
-                </div>
-            </div>
-
-            <!-- PS5 Card -->
-            <div class="card ps5-card">
-                <div class="card-header">
-                    <i class="fa-brands fa-playstation"></i>
-                    <h2>دعم إصدارات PS5</h2>
-                </div>
-                <div class="card-body">
-                    <span class="badge badge-ps5">من 9.00 إلى 13.60</span>
-                    <p>تشغيل أحدث أدوات التعديل واستغلال الثغرات بأمان.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Exploits Supported Section -->
-        <section class="exploits-section">
-            <h2><i class="fa-solid fa-microchip"></i> الثغرات والأدوات المدعومة</h2>
-            <div class="exploits-grid">
-                <div class="exploit-item"><i class="fa-solid fa-globe"></i> Webkit</div>
-                <div class="exploit-item"><i class="fa-solid fa-unlock-keyhole"></i> Jailbreak</div>
-                <div class="exploit-item"><i class="fa-solid fa-gem"></i> GoldHEN</div>
-                <div class="exploit-item"><i class="fa-solid fa-bolt"></i> PSFree</div>
-                <div class="exploit-item"><i class="fa-solid fa-code"></i> Payloads</div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; HIGH TECH PS | أفضل حلول الصيانة والتعديل</p>
-    </footer>
+    <!-- محتوى الموقع الأساسي -->
+    <div id="app-content" style="display: none;">
+        <h1>مرحباً بك في مركز صيانة بلاي ستيشن</h1>
+        <p>الموقع يعمل الآن بكفاءة بدون إنترنت (Offline Mode)</p>
+    </div>
 
     <script>
-        function triggerExploit() {
-            const msg = document.getElementById('statusMsg');
-            msg.innerText = "جاري تفعيل GoldHEN والتعديل... يرجى الانتظار";
-            msg.style.color = "#00f0ff";
-            
-            setTimeout(() => {
-                msg.innerText = "تم التفعيل بنجاح! جاهز للاستخدام.";
-                msg.style.color = "#00ff88";
-            }, 2000);
+        // محاكاة شاشة التحميل من 1 إلى 100% عند الفتح لأول مرة
+        let width = 1;
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const loaderWrapper = document.getElementById('loader-wrapper');
+        const appContent = document.getElementById('app-content');
+
+        let interval = setInterval(() => {
+            if (width >= 100) {
+                clearInterval(interval);
+                loaderWrapper.style.opacity = '0';
+                setTimeout(() => {
+                    loaderWrapper.style.display = 'none';
+                    appContent.style.display = 'block';
+                }, 500);
+            } else {
+                width++;
+                progressBar.style.width = width + '%';
+                progressText.innerText = width + '%';
+            }
+        }, 20); // سرعة التحميل
+
+        // تسجيل الـ Service Worker لتفعيل الكاش والعمل بدون إنترنت
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then((reg) => {
+                        console.log('Service Worker registered successfully:', reg.scope);
+                    })
+                    .catch((err) => {
+                        console.log('Service Worker registration failed:', err);
+                    });
+            });
         }
     </script>
 </body>
