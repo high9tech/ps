@@ -7,6 +7,8 @@ const ASSETS_TO_CACHE = [
   './script.js',
   './manifest.json',
   './background.png'
+  './README.md'
+'./goldhen.bin'
 ];
 
 // مرحلة التثبيت والتخزين المؤقت
